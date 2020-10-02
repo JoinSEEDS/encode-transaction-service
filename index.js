@@ -48,12 +48,18 @@ fastify.get('/invoice', async (request, reply) => {
 
     console.log("actions: "+JSON.stringify(actions, null, 2))
 
+    console.log("server address: " + JSON.stringify(fastify.server.address(), null, 2))
+
+    console.log("req address: " + JSON.stringify(request.req.url, null, 2))
+
     const esr = await buildTransaction(actions)
 
     const qr = await buildQrCode(esr)
     
+    const qrUrl = fastify.server.address() + "/" + qr
+
     return {
-        esr, qr
+        esr, qrUrl
     }
 })
 
