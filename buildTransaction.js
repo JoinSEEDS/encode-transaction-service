@@ -60,7 +60,7 @@ async function buildTransaction(actions, isTestnet = false) {
     const head_block = await rpc_active.get_block(info.last_irreversible_block_num);
     const chainId = info.chain_id;
     // set to an hour from now.
-    const expiration = Serialize.timePointSecToDate(Serialize.dateToTimePointSec(head_block.timestamp) * 3600)
+    const expiration = Serialize.timePointSecToDate(Serialize.dateToTimePointSec(head_block.timestamp) + 72 * 3600)
     const transaction = {
         expiration,
         ref_block_num: head_block.block_num & 0xffff, // 
