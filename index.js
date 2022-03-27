@@ -79,6 +79,20 @@ fastify.post('/qr', async (request, reply) => {
     }
 })
 
+fastify.post('/qr-testnet', async (request, reply) => {
+    const actions = request.body.actions
+
+    const esr = await buildTransaction(actions, true)
+
+    const qrPath = await buildQrCode(esr)
+    
+    const qr = "https://" + request.hostname + "/" + qrPath
+
+    return {
+        esr, qr
+    }
+})
+
 fastify.get('/invoice', async (request, reply) => {
 
     if (!request.query.to) {
