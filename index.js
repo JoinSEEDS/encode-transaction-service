@@ -27,7 +27,7 @@ fastify.get('/buy-seeds', async (request, reply) => {
             quantity: quantity
         })]
     
-        const esr = await buildTransaction(actions)
+        const esr = await buildTransaction({actions})
     
         const qrPath = await buildQrCode(esr)
     
@@ -54,7 +54,7 @@ fastify.get('/buyseeds', async (request, reply) => {
         memo: request.query.memo
     })]
 
-    const esr = await buildTransaction(actions)
+    const esr = await buildTransaction({actions})
 
     const qrPath = await buildQrCode(esr)
     
@@ -67,8 +67,9 @@ fastify.get('/buyseeds', async (request, reply) => {
 
 fastify.post('/qr', async (request, reply) => {
     const actions = request.body.actions
+    const transaction = request.body.transaction ?? false
 
-    const esr = await buildTransaction(actions)
+    const esr = await buildTransaction({actions, transaction})
 
     const qrPath = await buildQrCode(esr)
     
@@ -82,7 +83,7 @@ fastify.post('/qr', async (request, reply) => {
 fastify.post('/qr-testnet', async (request, reply) => {
     const actions = request.body.actions
 
-    const esr = await buildTransaction(actions, true)
+    const esr = await buildTransaction({actions, isTestnet: true})
 
     const qrPath = await buildQrCode(esr)
     
@@ -126,7 +127,7 @@ fastify.get('/invoice', async (request, reply) => {
         }
     }]
 
-    const esr = await buildTransaction(actions)
+    const esr = await buildTransaction({actions})
 
     const qrPath = await buildQrCode(esr)
     
