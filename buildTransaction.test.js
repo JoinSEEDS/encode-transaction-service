@@ -21,7 +21,7 @@ describe('buildTransaction', async assert => {
     assert({
         given: 'conversation',
         should: 'build transaction',
-        actual: typeof (await buildTransaction(actions)),
+        actual: typeof (await buildTransaction({actions})),
         expected: 'string'
     })
 })

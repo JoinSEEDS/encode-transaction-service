@@ -53,7 +53,7 @@ const opts_testnet = {
     }
 }
 
-async function buildTransaction(actions, isTestnet = false) {
+async function buildTransaction({actions, transaction = false, isTestnet = false}) {
     const rpc_active = isTestnet ? rpc_testnet : rpc
     const opts_active = isTestnet ? opts_testnet : opts
     const info = await rpc_active.get_info();
