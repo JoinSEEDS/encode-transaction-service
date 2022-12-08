@@ -7,7 +7,10 @@ const zlib = require('zlib')
 const textEncoder = new util.TextEncoder()
 const textDecoder = new util.TextDecoder()
 
-const rpc = new JsonRpc('https://node.hypha.earth', {
+const MAINNET_NODE = "https://mainnet.telos.net"
+const TESTNET_NODE = "https://testnet.telos.net"
+
+const rpc = new JsonRpc(MAINNET_NODE, {
     fetch
 })
 
@@ -17,7 +20,7 @@ const eos = new Api({
     textEncoder,
 })
 
-const rpc_testnet = new JsonRpc('https://test.hypha.earth', {
+const rpc_testnet = new JsonRpc(TESTNET_NODE, {
     fetch
 })
 
