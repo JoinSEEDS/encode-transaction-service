@@ -116,3 +116,4 @@ dist
 .pnp.*
 images
 package-lock.json
+.DS_Store
